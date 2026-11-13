@@ -1,0 +1,175 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/schibsted-grotesk';
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+  Colours. A cool neutral base, one blue accent, and three severity colours.
+  Severity colour is never used alone: it always comes with an icon and words.
+*/
+:root {
+  --radius: 1rem;
+
+  --background: #f6f8f9;
+  --foreground: #18212b;
+  --card: #ffffff;
+  --card-foreground: #18212b;
+  --muted: #eaeef1;
+  --muted-foreground: #5a6672;
+  --border: #dde3e8;
+  --ring: #2d5b86;
+
+  --primary: #2d5b86;
+  --primary-foreground: #ffffff;
+  --secondary: #e4ecf3;
+  --secondary-foreground: #1f4466;
+
+  /* Severity: calm, worth a look, act now */
+  --calm: #27705a;
+  --calm-soft: #e3f1ec;
+  --attention: #9a5f0c;
+  --attention-soft: #fbf0dc;
+  --urgent: #b83a26;
+  --urgent-soft: #fbe6e1;
+
+  --stage: #e3e8ec;
+  --bezel: #18212b;
+}
+
+.dark {
+  --background: #12181f;
+  --foreground: #e8edf1;
+  --card: #1a222b;
+  --card-foreground: #e8edf1;
+  --muted: #222c36;
+  --muted-foreground: #9aa7b3;
+  --border: #2b3742;
+  --ring: #7fb0dc;
+
+  --primary: #7fb0dc;
+  --primary-foreground: #0f2236;
+  --secondary: #213244;
+  --secondary-foreground: #cfe1f2;
+
+  --calm: #6fcfab;
+  --calm-soft: #17332a;
+  --attention: #f0b558;
+  --attention-soft: #3a2c14;
+  --urgent: #f08a76;
+  --urgent-soft: #3d1d17;
+
+  --stage: #0b1015;
+  --bezel: #05080b;
+}
+
+@theme inline {
+  --font-sans: 'Schibsted Grotesk Variable', ui-sans-serif, system-ui, sans-serif;
+  --radius-sm: calc(var(--radius) - 6px);
+  --radius-md: calc(var(--radius) - 4px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-calm: var(--calm);
+  --color-calm-soft: var(--calm-soft);
+  --color-attention: var(--attention);
+  --color-attention-soft: var(--attention-soft);
+  --color-urgent: var(--urgent);
+  --color-urgent-soft: var(--urgent-soft);
+  --color-stage: var(--stage);
+  --color-bezel: var(--bezel);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-stage text-foreground font-sans antialiased;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-ring;
+  }
+}
+
+/* Motion is small and switched off for people who prefer reduced motion */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes shimmer {
+  from {
+    background-position: -200% 0;
+  }
+  to {
+    background-position: 200% 0;
+  }
+}
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+.rise-in {
+  animation: rise-in 420ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.skeleton {
+  background: linear-gradient(90deg, var(--muted) 25%, var(--border) 50%, var(--muted) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.2s linear infinite;
+}
+.pulse-ring::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: currentColor;
+  animation: pulse-ring 1.8s ease-out infinite;
+}
+
+.hatch {
+  background-image: repeating-linear-gradient(135deg, currentColor 0 2px, transparent 2px 6px);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
