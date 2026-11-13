@@ -6,7 +6,7 @@ The assignment imagines someone opening a smart-home app after a few hours out a
 
 My redesign leads with the answer. One sentence says how things are, at most three cards say what needs you and what to do, and everything else (the raw numbers, the full event list) is still one tap away.
 
-**Live demo:** _add the Vercel link here_
+**Live demo:** [https://home-briefing-pi.vercel.app/](https://home-briefing-pi.vercel.app/)
 
 | Before | After | When something is wrong |
 | --- | --- | --- |

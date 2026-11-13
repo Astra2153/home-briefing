@@ -2,8 +2,8 @@
 
 Ashmit Sanjay Katale, Ogmen Robotics Software Intern Assignment 1 (2026)
 
-Live demo: _Vercel link_
-Code: _GitHub link_
+Live demo: https://home-briefing-pi.vercel.app/
+Code: https://github.com/Astra2153/home-briefing
 
 ## The idea
 
